@@ -1,4 +1,5 @@
 # Portfolio-2
+I chose option 1.
 The two existing projects that I used were:
 ○ To Do list Assignment
 ○ Login Assignment
