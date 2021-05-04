@@ -8,7 +8,7 @@ My app is a Daily Fitness and Wellness management app, that allows the user to e
 
 What I added to the projects:
 ○ In order to view the to do list the USER must login with the correct credentials. Once the user logs in the list will appear and the user will be prompted with a successful log in message. I also added a log out button to this. So when the user logs out the to do list will disappear. 
-  - The correct credentials are: username: <any username> and password: Ch@rge!
+  - The correct credentials are: username: "any username" (any username can be entered) and password: Ch@rge!
   - This interactivity is also managed through the useState function
 ○ I also added react stack navigation in order to navigate between pages/components
 ○ I also added 3 workout components: Jumping Jacks, Push-Ups, and Squats.
