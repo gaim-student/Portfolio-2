@@ -1,14 +1,14 @@
 
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, View} from 'react-native';
+import { StyleSheet, Text, TextInput, SafeAreaView, FlatList, View} from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import TodoApp from './components/Todo';
 import LoginApp from './components/LoginApp';
-import Run from './components/run'
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import JJacks from './components/exercises';
 import PushUps from './components/PushUps';
+import Squats from './components/Squats';
 
 
 
@@ -22,8 +22,8 @@ export default function MyStack() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Workout" component={Workout} />
         <Stack.Screen name="JumpingJacks" component={JumpingJacks} />
-        <Stack.Screen name="Run" component={Running} />
         <Stack.Screen name="Push-Ups" component={Push} />
+        <Stack.Screen name="Squats" component={Squat} />
       </Stack.Navigator>
     </NavigationContainer>
     
@@ -32,17 +32,16 @@ export default function MyStack() {
 function Home({ navigation }){
 
   return (
-    <View>
-      <Text>Welcome, to your Fitness and Daily Health Manager App! Login to view your To Do List, or proceed to Workout w/out logging in! </Text>
+    <SafeAreaView>
+        <View>
+          <Text style={styles.textnew}>Welcome, to your Fitness and Daily Health Manager App! Login to view your To Do List, or proceed to Workout w/out logging in! </Text>
       
-      <Button
-        title="Start Workout"
-        onPress={() => navigation.navigate('Workout')}
-      />
-      <LoginApp>
-      </LoginApp>
+          <Button title="Start Workout" onPress={() => navigation.navigate('Workout')}/>
+          <LoginApp></LoginApp>
       
-    </View>
+        </View>
+    </SafeAreaView>
+    
     
   );
 }
@@ -56,12 +55,48 @@ function List(){
   );
 }
 function Workout({ navigation }){
+  let [buttonclick, setButtonClick] = useState("")
+
+  let Jacks = () => {
+    navigation.navigate('JumpingJacks')
+    setButtonClick("Jumping Jacks")
+  }
+  let [pushes, setPushes] = useState("")
+
+  let ups = () => {
+    navigation.navigate('Push-Ups')
+    setPushes("Push-Ups")
+  }
+  let [squatting, setSquatting] = useState("")
+
+  let sqs = () => {
+    navigation.navigate('Squats')
+    setSquatting("Squats")
+  }
+   let handleList = () => {
+     setSquatting("")
+     setButtonClick("")
+     setPushes("")
+   }
   return (
     <View>
-      <Text>Exercise List:</Text>
-      <Button title="Jumping Jacks" onPress={() => navigation.navigate('JumpingJacks')}></Button>
-      <Button title="Run" onPress={() => navigation.navigate('Run')}></Button>
-      <Button title="Push Ups" onPress={() => navigation.navigate('Push-Ups')}></Button>
+      <Text style={styles.text}>Exercise List:</Text>
+      <Button title="Jumping Jacks" onPress={Jacks}></Button>
+    
+      <Button title="Push Ups" onPress={ups}></Button>
+      <Button title="Squats" onPress={sqs}></Button>
+
+      <View>
+        <Text style={styles.textnew1}>Completed exercises:</Text>
+        <Text style={styles.textnew}>{buttonclick}</Text>
+        <Text style={styles.textnew}>{pushes}</Text>
+        <Text style={styles.textnew}>{squatting}</Text>
+        <Button onPress={handleList} title="Reset Completed List!"></Button>
+      </View>
+    
+      
+
+
       
     </View>
     
@@ -71,26 +106,28 @@ function JumpingJacks(){
   return (
     <View>
       <JJacks></JJacks>
+
       
       
     </View>
     
   );
 }
-function Running(){
-  return (
-    <View>
-      <Run></Run>
-      
-      
-    </View>
-    
-  );
-}
+
 function Push(){
   return (
     <View>
       <PushUps></PushUps>
+      
+      
+    </View>
+    
+  );
+}
+function Squat(){
+  return (
+    <View>
+      <Squats></Squats>
       
       
     </View>
@@ -111,5 +148,26 @@ const styles = StyleSheet.create({
     fontSize: "1.5rem",
     marginVertical: "1em",
     textAlign: "center"
-  }
+  },
+  text: {
+    fontWeight: "bold",
+    fontSize: "2.5rem",
+    marginVertical: "1em",
+    textAlign: "center",
+    display: "block",
+},
+textnew: {
+  fontWeight: "bold",
+  fontSize: "1.25 rem",
+  marginVertical: "1em",
+  textAlign: "center",
+  display: "block",
+},
+textnew1: {
+  fontWeight: "bold",
+  fontSize: "1.75 rem",
+  marginVertical: "1em",
+  textAlign: "center",
+  display: "block",
+},
 });
