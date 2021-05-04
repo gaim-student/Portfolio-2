@@ -20,3 +20,5 @@ What I added to the projects:
 ○ Components add:
    - Stack Navigation components, one of which uses useState. (The one that does this is the Workout component/screen)
    - JJacks, PushUps, Squats components all also utilize useState.
+
+GitHub pages: https://gaim-student.github.io/Portfolio-2/
